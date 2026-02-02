@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,23 +6,26 @@
     <title>TOCSI | Learning App</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0b0e14;
-            --card: #161b22;
-            --accent: #fbbf24; 
-            --border: rgba(255, 255, 255, 0.05);
-            --nav-bg: #0d1117;
-        }
+       * White bottom navigation */
+:root {
+    --bg: #f5f7ff;      /* Light blue-white background */
+    --card: #ffffff;    /* Pure white cards */
+     --text: #0a1931; /* Dark navy for all main text */
+    --accent: #54b4f3;  /*electric Blue */
+    --nav-bg: #ffffff;  /* White bottom bar */
+}
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: var(--bg); 
-            color: white; 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+         {
+    font-family: 'Jakarta Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg); /* Ensures background is the light blue-white */
+    color: var(--text); /* THIS IS CRUCIAL: Makes all text dark navy */
+    overflow-x: hidden;
+}
+
 
         /* --- 1. APP-STYLE SPLASH --- */
         #splash {
@@ -48,8 +50,8 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            background: var(--nav-bg);
-            border-bottom: 1px solid var(--border);
+            background-color: #54b4f3 !important; /* Royal Blue */
+         color:#ffffff;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -59,21 +61,31 @@
         .logo-area img { width:100px; height: 100px; border-radius: 50px; }
 
         .paper-switch {
-            display: flex;
-            background: #000;
-            padding: 4px;
-            border-radius: 10px;
-            width: 100%;
-        }
-        .paper-btn {
-            flex: 1;
-            padding: 8px;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            color: #555;
+    background: #ffffff !important; /* This turns the black line WHITE */
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+    margin: 15px;
+    border-radius: 50px; /* Makes the bar rounded like an app toggle */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.paper-btn {
+    background: transparent;
+    color: #54b4f3 !important; /*  Blue */
+    border: none;
+    padding: 10px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50px;
+    flex: 1;
+    text-align: center;
+}
+
+.paper-btn.active {
+    background: #54b4f3 !important; /* Active button turns Blue */
+    color: #ffffff !important;      /* Active text turns White */
+
             transition: 0.3s;
         }
         .paper-btn.active { background: var(--accent); color: #000; }
@@ -122,9 +134,23 @@
         .nav-item.active { color: var(--accent); }
         .nav-icon { font-size: 1.4rem; display: block; margin-bottom: 2px; }
         .nav-label { font-size: 0.65rem; font-weight: 600; }
-
         .hidden { display: none; }
-    </style>
+
+           .nav-item.active {
+            color: var(--accent);
+        }
+
+        /* PASTE IT HERE */
+        #typer {
+            color: #ffffff !important;
+            font-weight: bold;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        #splash {
+            color: #ffffff !important;
+        }
+  </style>
 </head>
 <body>
 
@@ -234,295 +260,4 @@
         }
     </script>
 </body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TOCSI | Learning App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0b0e14;
-            --card: #161b22;
-            --accent: #fbbf24; 
-            --border: rgba(255, 255, 255, 0.05);
-            --nav-bg: #0d1117;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: var(--bg); 
-            color: white; 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* --- 1. APP-STYLE SPLASH --- */
-        #splash {
-            position: fixed;
-            inset: 0; background: #000; z-index: 3000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 0.6s ease-out;
-        }
-        .splash-logo { width: 400px; height: auto; margin-bottom: 20px; animation: appLoad 3s ease; }
-        @keyframes appLoad { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-        
-        .welcome-msg { 
-            font-family: 'JetBrains Mono', monospace; 
-            color: var(--accent); 
-            font-size: 1.8rem; 
-            font-weight: 800;
-        }
-
-        /* --- 2. TOP NAV (LOGO & PAPER) --- */
-        header {
-            padding: 15px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background: var(--nav-bg);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .top-row { display: flex; justify-content: space-between; align-items: center; }
-        .logo-area { display: flex; align-items: center; gap: 40px; font-weight: 800; font-size: 1.8rem; }
-        .logo-area img { width:100px; height: 100px; border-radius: 50px; }
-
-        .paper-switch {
-            display: flex;
-            background: #000;
-            padding: 4px;
-            border-radius: 10px;
-            width: 100%;
-        }
-        .paper-btn {
-            flex: 1;
-            padding: 8px;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            color: #555;
-            transition: 0.3s;
-        }
-        .paper-btn.active { background: var(--accent); color: #000; }
-
-        /* --- 3. MAIN APP CONTENT --- */
-        .app-body { padding: 20px; padding-bottom: 100px; }
-        .section-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
-        .section-title::before { content: ''; width: 4px; height: 20px; background: var(--accent); border-radius: 10px; }
-
-        /* Folder Cards (App Style) */
-        .category-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .card:active { transform: scale(0.97); background: #1c2128; }
-        .card-icon { 
-            width: 55px; height: 55px; 
-            background: rgba(251, 191, 36, 0.1); 
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem;
-        }
-        .card-info h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
-        .card-info p { font-size: 0.8rem; color: #7d8590; }
-
-        /* --- 4. BOTTOM NAVIGATION --- */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: var(--nav-bg);
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0 25px; /* Extra bottom padding for modern phones */
-            z-index: 1000;
-        }
-        .nav-item { text-align: center; color: #555; cursor: pointer; flex: 1; }
-        .nav-item.active { color: var(--accent); }
-        .nav-icon { font-size: 1.4rem; display: block; margin-bottom: 2px; }
-        .nav-label { font-size: 0.65rem; font-weight: 600; }
-
-        .hidden { display: none; }
-    </style>
-</head>
-<body>
-
-    <div id="splash">
-        <img src="C:\Users\91946\Desktop\new1\logo-img.jpj.jpeg"class="splash-logo" alt="TOCSI">
-        <div class="welcome-msg" id="typer"></div>
-    </div>
-
-    <header>
-        <div class="top-row">
-            <div class="logo-area">
-                <img src= "C:\Users\91946\Desktop\new1\logo-img.jpj.jpeg"> TOCSI</span>
-            </div>
-            <div style="font-size: 1.8rem;">🔔</div>
-        </div>
-        <div class="paper-switch">
-            <div class="paper-btn" onclick="setPaper(1, this)">Paper 1</div>
-            <div class="paper-btn active" onclick="setPaper(2, this)">Paper 2 (CS)</div>
-        </div>
-    </header>
-
-    <main class="app-body">
-        
-        <div id="home-view">
-            <h2 class="section-title">Explore Courses</h2>
-            <div class="category-grid">
-                <div class="card" onclick="showFolder('Courses')">
-                    <div class="card-icon">📺</div>
-                    <div class="card-info">
-                        <h3>Full Courses</h3>
-                        <p>Unit-wise video lectures</p>
-                    </div>
-                </div>
-                <div class="card" onclick="showFolder('PDFs')">
-                    <div class="card-icon">📚</div>
-                    <div class="card-info">
-                        <h3>Study Materials</h3>
-                        <p>Premium PDF Notes & Books</p>
-                    </div>
-                </div>
-                <div class="card" onclick="showFolder('PYQs')">
-                    <div class="card-icon">✍️</div>
-                    <div class="card-info">
-                        <h3>Practice PYQs</h3>
-                        <p>Previous year solved papers</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="folder-view" class="hidden">
-            <div onclick="hideFolder()" style="color: var(--accent); margin-bottom: 20px; font-weight: 600;">← Back</div>
-            <h2 class="section-title" id="folder-name">Units</h2>
-            <div id="unit-list">
-                
-        </div>
-<div id="library-view" class="hidden">
-    <h2 class="section-title">My Library</h2>
-    <div style="text-align: center; padding: 40px 20px; color: #7d8590;">
-        <div style="font-size: 3rem; margin-bottom: 10px;">📖</div>
-        <h3>Your library is empty</h3>
-        <p style="font-size: 0.9rem; margin-top: 10px;">Saved courses and offline notes will appear here.</p>
-        <button onclick="showView('home-view')" style="margin-top: 20px; background: var(--accent); border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer;">Explore Courses</button>
-    </div>
-</div>
-
-<div id="profile-view" class="hidden">
-    <div style="text-align: center; padding: 30px 0;">
-        <div style="width: 100px; height: 100px; background: var(--card); border: 2px solid var(--accent); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-            👤
-        </div>
-        <h2 style="font-size: 1.4rem;">Student Name</h2>
-        <p style="color: #7d8590; font-size: 0.9rem;">Course: UGC NET CS</p>
-    </div>
-
-    <div class="category-grid">
-        <div class="card" style="padding: 15px;">
-            <div class="card-icon" style="width: 40px; height: 40px; font-size: 1.1rem;">📊</div>
-            <div class="card-info"><h3>My Progress</h3><p>Track your completed units</p></div>
-        </div>
-        <div class="card" style="padding: 15px;">
-            <div class="card-icon" style="width: 40px; height: 40px; font-size: 1.1rem;">⚙️</div>
-            <div class="card-info"><h3>Settings</h3><p>App preferences & dark mode</p></div>
-        </div>
-        <div class="card" style="padding: 15px; border-color: rgba(255,0,0,0.2);">
-            <div class="card-icon" style="width: 40px; height: 40px; font-size: 1.1rem; background: rgba(255,0,0,0.1);">🚪</div>
-            <div class="card-info"><h3>Logout</h3><p>Sign out of your account</p></div>
-        </div>
-    </div>
-</div>
-    </main>
-
-   <nav class="bottom-nav">
-    <div class="nav-item active" onclick="showView('home-view')">
-        <span class="nav-icon">🏠</span>
-        <span class="nav-label">Home</span>
-    </div>
-
-    <div class="nav-item" onclick="showView('library-view')">
-        <span class="nav-icon">📖</span>
-        <span class="nav-label">My Library</span>
-    </div>
-
-    <div class="nav-item" onclick="showView('profile-view')">
-    <span class="nav-icon">👤</span>
-    <span class="nav-label">Profile</span>
-</div>
-</nav>
-
-    <script>
-        // Typing Effect
-        const txt = "WELCOME TO TOCSI";
-        let idx = 0;
-        function typing() {
-            if (idx < txt.length) {
-                document.getElementById("typer").innerHTML += txt.charAt(idx);
-                idx++; setTimeout(typing, 80);
-            } else {
-                setTimeout(() => { 
-                    document.getElementById("splash").style.opacity = "0";
-                    setTimeout(() => document.getElementById("splash").style.display = "none", 600);
-                }, 1000);
-            }
-        }
-        window.onload = typing;
-
-        // 2. NEW & IMPROVED: Master View Controller
-// This handles Home, Library, and Folder views safely
-
-function showView(viewId) {
-    // 1. Hide ALL sections
-    document.getElementById("home-view").classList.add("hidden");
-    document.getElementById("folder-view").classList.add("hidden");
-    document.getElementById("library-view").classList.add("hidden");
-    document.getElementById("profile-view").classList.add("hidden"); // Added this line
-
-    // 2. Show the one we want
-    document.getElementById(viewId).classList.remove("hidden");
-
-    // 3. Update the Bottom Nav active color
-    document.querySelectorAll('.nav-item').forEach((nav, index) => {
-        nav.classList.remove('active');
-        if (viewId === 'home-view' && index === 0) nav.classList.add('active');
-        if (viewId === 'library-view' && index === 1) nav.classList.add('active');
-        if (viewId === 'profile-view' && index === 2) nav.classList.add('active'); // Added this line
-    });
-}
-// 3. UPDATED: Folder Logic (Modified to use showView)
-function showFolder(name) {
-    showView('folder-view'); // Re-uses our new switching logic
-    document.getElementById("folder-name").innerText = name;
-}
-
-function hideFolder() {
-    showView('home-view'); // Takes you back home
-}
-
-        function setPaper(num, el) {
-            document.querySelectorAll('.paper-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-        }
-    </script>
-</body>
->>>>>>> 9aa47cc (Added Library,profile section and updated navigation)
 </html>
