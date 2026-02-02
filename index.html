@@ -6,151 +6,108 @@
     <title>TOCSI | Learning App</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
-       * White bottom navigation */
-:root {
-    --bg: #f5f7ff;      /* Light blue-white background */
-    --card: #ffffff;    /* Pure white cards */
-     --text: #0a1931; /* Dark navy for all main text */
-    --accent: #54b4f3;  /*electric Blue */
-    --nav-bg: #ffffff;  /* White bottom bar */
-}
+        :root {
+            --bg: #f5f7ff;
+            --card: #ffffff;
+            --text: #0a1931;
+            --accent: #54b4f3;
+            --nav-bg: #ffffff;
+            --border: #edf0f7;
+        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-         {
-    font-family: 'Jakarta Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg); /* Ensures background is the light blue-white */
-    color: var(--text); /* THIS IS CRUCIAL: Makes all text dark navy */
-    overflow-x: hidden;
-}
 
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
 
-        /* --- 1. APP-STYLE SPLASH --- */
+        /* --- 1. SPLASH --- */
         #splash {
-            position: fixed;
-            inset: 0; background: #000; z-index: 3000;
+            position: fixed; inset: 0; background:#54b4f3; z-index: 3000;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 0.6s ease-out;
         }
-        .splash-logo { width: 400px; height: auto; margin-bottom: 20px; animation: appLoad 3s ease; }
-        @keyframes appLoad { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-        
-        .welcome-msg { 
-            font-family: 'JetBrains Mono', monospace; 
-            color: var(--accent); 
-            font-size: 1.8rem; 
-            font-weight: 800;
-        }
+        .splash-logo {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    object-fit: cover;
+    /* This makes it "come out" toward the user */
+    animation: popOut 10s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
 
-        /* --- 2. TOP NAV (LOGO & PAPER) --- */
+@keyframes popOut {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.9); /* Starts small and invisible */
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1);   /* Ends at full size with a slight "bounce" */
+    }
+}
+        .welcome-msg { font-family: 'JetBrains Mono', monospace; color: #ffffff; font-size: 1.8rem; font-weight: 800; }
+
+        /* --- 2. HEADER --- */
         header {
             padding: 15px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background-color: #54b4f3 !important; /* Royal Blue */
-         color:#ffffff;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background-color: var(--accent);
+            color: #ffffff;
+            position: sticky; top: 0; z-index: 1000;
         }
         .top-row { display: flex; justify-content: space-between; align-items: center; }
-        .logo-area { display: flex; align-items: center; gap: 40px; font-weight: 800; font-size: 1.8rem; }
-        .logo-area img { width:100px; height: 100px; border-radius: 50px; }
+        .logo-area { display: flex; align-items: center; gap: 15px; font-weight: 800; font-size: 1.6rem; }
+        .logo-area img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
 
         .paper-switch {
-    background: #ffffff !important; /* This turns the black line WHITE */
-    display: flex;
-    justify-content: space-around;
-    padding: 8px;
-    margin: 15px;
-    border-radius: 50px; /* Makes the bar rounded like an app toggle */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-}
-
-.paper-btn {
-    background: transparent;
-    color: #54b4f3 !important; /*  Blue */
-    border: none;
-    padding: 10px 25px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 50px;
-    flex: 1;
-    text-align: center;
-}
-
-.paper-btn.active {
-    background: #54b4f3 !important; /* Active button turns Blue */
-    color: #ffffff !important;      /* Active text turns White */
-
-            transition: 0.3s;
+            background: #ffffff;
+            display: flex; justify-content: space-around;
+            padding: 5px; margin-top: 15px; border-radius: 50px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-        .paper-btn.active { background: var(--accent); color: #000; }
+        .paper-btn {
+            background: transparent; color: var(--accent); border: none;
+            padding: 10px; font-weight: bold; cursor: pointer; border-radius: 50px; flex: 1;
+        }
+        .paper-btn.active { background: var(--accent); color: #ffffff; }
 
-        /* --- 3. MAIN APP CONTENT --- */
+        /* --- 3. CONTENT --- */
         .app-body { padding: 20px; padding-bottom: 100px; }
         .section-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
         .section-title::before { content: ''; width: 4px; height: 20px; background: var(--accent); border-radius: 10px; }
 
-        /* Folder Cards (App Style) */
-        .category-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            cursor: pointer;
-            transition: 0.2s;
+        .card, .library-card {
+            background: var(--card); border: 1px solid var(--border);
+            padding: 20px; border-radius: 18px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
-        .card:active { transform: scale(0.97); background: #1c2128; }
-        .card-icon { 
-            width: 55px; height: 55px; 
-            background: rgba(251, 191, 36, 0.1); 
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem;
-        }
-        .card-info h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
-        .card-info p { font-size: 0.8rem; color: #7d8590; }
+        .card { display: flex; align-items: center; gap: 20px; }
+        .card-icon { font-size: 1.5rem; width: 50px; height: 50px; background: #f0f7ff; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
 
-        /* --- 4. BOTTOM NAVIGATION --- */
+        /* Library Specific Styles */
+        .lib-card-top { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .lib-badge { font-size: 0.7rem; background: #fff4e5; color: #ff9800; padding: 4px 10px; border-radius: 8px; font-weight: 700; }
+        .progress-container { height: 8px; background: #eee; border-radius: 10px; margin: 15px 0; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--accent); }
+        .lib-card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; font-weight: 600; }
+        .resume-btn { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 10px; cursor: pointer; }
+
+        /* --- 4. NAVIGATION --- */
         .bottom-nav {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: var(--nav-bg);
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0 25px; /* Extra bottom padding for modern phones */
-            z-index: 1000;
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--nav-bg); border-top: 1px solid var(--border);
+            display: flex; justify-content: space-around; padding: 10px 0 25px; z-index: 1000;
         }
-        .nav-item { text-align: center; color: #555; cursor: pointer; flex: 1; }
+        .nav-item { text-align: center; color: #888; cursor: pointer; flex: 1; }
         .nav-item.active { color: var(--accent); }
-        .nav-icon { font-size: 1.4rem; display: block; margin-bottom: 2px; }
-        .nav-label { font-size: 0.65rem; font-weight: 600; }
+        .nav-icon { font-size: 1.4rem; display: block; }
+        .nav-label { font-size: 0.7rem; font-weight: 600; }
         .hidden { display: none; }
-
-           .nav-item.active {
-            color: var(--accent);
-        }
-
-        /* PASTE IT HERE */
-        #typer {
-            color: #ffffff !important;
-            font-weight: bold;
-            text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        #splash {
-            color: #ffffff !important;
-        }
-  </style>
+    </style>
 </head>
 <body>
 
@@ -159,12 +116,12 @@
         <div class="welcome-msg" id="typer"></div>
     </div>
 
-    <header>
+    <header id="main-header">
         <div class="top-row">
             <div class="logo-area">
-                <img src= "C:\Users\91946\Desktop\new1\logo-img.jpj.jpeg"> TOCSI</span>
+              <img src="C:\Users\91946\Desktop\new1\logo-img.jpj.jpeg"> <span>TOCSI</span>
             </div>
-            <div style="font-size: 1.8rem;">🔔</div>
+            <div style="font-size: 1.5rem;">🔔</div>
         </div>
         <div class="paper-switch">
             <div class="paper-btn" onclick="setPaper(1, this)">Paper 1</div>
@@ -174,24 +131,24 @@
 
     <main class="app-body">
         
-        <div id="home-view">
+        <div id="home-view" class="app-section">
             <h2 class="section-title">Explore Courses</h2>
             <div class="category-grid">
-                <div class="card" onclick="showFolder('Courses')">
+                <div class="card">
                     <div class="card-icon">📺</div>
                     <div class="card-info">
                         <h3>Full Courses</h3>
                         <p>Unit-wise video lectures</p>
                     </div>
                 </div>
-                <div class="card" onclick="showFolder('PDFs')">
+                <div class="card">
                     <div class="card-icon">📚</div>
                     <div class="card-info">
                         <h3>Study Materials</h3>
                         <p>Premium PDF Notes & Books</p>
                     </div>
                 </div>
-                <div class="card" onclick="showFolder('PYQs')">
+                <div class="card">
                     <div class="card-icon">✍️</div>
                     <div class="card-info">
                         <h3>Practice PYQs</h3>
@@ -201,25 +158,44 @@
             </div>
         </div>
 
-        <div id="folder-view" class="hidden">
-            <div onclick="hideFolder()" style="color: var(--accent); margin-bottom: 20px; font-weight: 600;">← Back</div>
-            <h2 class="section-title" id="folder-name">Units</h2>
-            <div id="unit-list">
-                
+        <div id="library-view" class="app-section" style="display: none;">
+            <h2 class="section-title">My Library</h2>
+            <div class="library-card">
+                <div class="lib-card-top">
+                    <span class="lib-badge">In Progress</span>
+                    <span class="lib-icon">💻</span>
+                </div>
+                <div class="lib-card-info">
+                    <h3>Computer Science - Paper 2</h3>
+                    <p>Unit 3: Data Structures</p>
+                </div>
+                <div class="progress-container"><div class="progress-bar" style="width: 65%;"></div></div>
+                <div class="lib-card-footer">
+                    <span>65% Completed</span>
+                    <button class="resume-btn">Resume</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="profile-view" class="app-section" style="display: none;">
+            <h2 class="section-title">My Profile</h2>
+            <div class="card">
+                <p>Welcome, Student! Your settings will appear here.</p>
+            </div>
         </div>
 
     </main>
 
     <nav class="bottom-nav">
-        <div class="nav-item active">
+        <div class="nav-item active" onclick="showView('home-view')">
             <span class="nav-icon">🏠</span>
             <span class="nav-label">Home</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="showView('library-view')">
             <span class="nav-icon">📖</span>
             <span class="nav-label">My Library</span>
         </div>
-        <div class="nav-item">
+        <div class="nav-item" onclick="showView('profile-view')">
             <span class="nav-icon">👤</span>
             <span class="nav-label">Profile</span>
         </div>
@@ -227,12 +203,12 @@
 
     <script>
         // Typing Effect
-        const txt = "WELCOME TO TOCSI";
+        const txt = "WELCOME TO TOCSI.....";
         let idx = 0;
         function typing() {
             if (idx < txt.length) {
                 document.getElementById("typer").innerHTML += txt.charAt(idx);
-                idx++; setTimeout(typing, 80);
+                idx++; setTimeout(typing, 100);
             } else {
                 setTimeout(() => { 
                     document.getElementById("splash").style.opacity = "0";
@@ -242,21 +218,32 @@
         }
         window.onload = typing;
 
-        // Folder Logic
-        function showFolder(name) {
-            document.getElementById("home-view").classList.add("hidden");
-            document.getElementById("folder-view").classList.remove("hidden");
-            document.getElementById("folder-name").innerText = name;
-        }
-
-        function hideFolder() {
-            document.getElementById("folder-view").classList.add("hidden");
-            document.getElementById("home-view").classList.remove("hidden");
-        }
-
         function setPaper(num, el) {
             document.querySelectorAll('.paper-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
+        }
+
+        // IMPROVED VIEW SWITCHER
+        function showView(viewId) {
+            // 1. Hide all sections
+            document.querySelectorAll('.app-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // 2. Show the clicked section
+            document.getElementById(viewId).style.display = 'block';
+
+            // 3. Header Logic: Only show Paper Switch on Home View
+            const header = document.getElementById('main-header');
+            if (viewId === 'home-view') {
+                header.style.display = 'block';
+            } else {
+                header.style.display = 'none'; // This hides the logo and paper buttons in Library
+            }
+
+            // 4. Update Nav active state
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            event.currentTarget.classList.add('active');
         }
     </script>
 </body>
